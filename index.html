@@ -45,19 +45,21 @@
     <div class="hero-inner container">
       <!-- Left: Copy -->
       <div class="hero-copy animate-in">
-        <h1 class="hero-title">
-          Soffri di problemi <br>di <span style="color: var(--sage-dark)">incontinenza</span> o <br>di <span
-            style="color: var(--sage-dark)">secchezza</span> <br>vaginale?<br>
-        </h1>
-        <div class="hero-benefits">
-          <p class="hero-subtitle">Il nostro trattamento <strong
-              style="color: var(--sage-dark); font-weight: 800; font-size: 1.15em;">Laser Fotona SMOOTH</strong> offre
-            una terapia:</p>
-          <ul class="hero-bullets">
-            <li><strong style="color: var(--sage-dark); font-weight: 800; font-size: 1.15em;">Delicata</strong></li>
-            <li><strong style="color: var(--sage-dark); font-weight: 800; font-size: 1.15em;">Indolore</strong></li>
-            <li><strong style="color: var(--sage-dark); font-weight: 800; font-size: 1.15em;">Efficace</strong></li>
-          </ul>
+        <div class="hero-copy-main" id="heroCopyMain">
+          <h1 class="hero-title">
+            Soffri di problemi di <span style="color: var(--sage-dark)">incontinenza</span> o <br>di <span
+              style="color: var(--sage-dark)">secchezza</span> <br>vaginale?<br>
+          </h1>
+          <div class="hero-benefits">
+            <p class="hero-subtitle">Il nostro trattamento <strong
+                style="color: var(--sage-dark); font-weight: 800; font-size: 1.15em;">Laser Fotona SMOOTH</strong> offre
+              una terapia:</p>
+            <ul class="hero-bullets">
+              <li><strong style="color: var(--sage-dark); font-weight: 800; font-size: 1.15em;">Delicata</strong></li>
+              <li><strong style="color: var(--sage-dark); font-weight: 800; font-size: 1.15em;">Indolore</strong></li>
+              <li><strong style="color: var(--sage-dark); font-weight: 800; font-size: 1.15em;">Efficace</strong></li>
+            </ul>
+          </div>
         </div>
         <div class="mobile-only-video animate-in delay-1">
           <div class="hero-video-wrapper">
@@ -67,12 +69,74 @@
             </video>
           </div>
         </div>
-        <div class="hero-cta-group" style="margin-top:8px;">
+        <div class="hero-cta-group hero-cta-mobile-only">
           <a href="#form-hero" class="btn-primary btn-pulse"
             style="display:block; width:100%; text-align:center; padding:20px 48px; text-decoration:none; font-size:1.3rem;">
             PRENOTA LA TUA VISITA GRATUITA
           </a>
+        </div>
+      </div>
 
+      <!-- Right (Desktop): Form -->
+      <div class="hero-form-desktop reveal" aria-hidden="true">
+        <div class="hero-form-card" id="heroDesktopCard">
+          <h3 style="text-transform: none; letter-spacing: -0.02em;">Riprendi in mano la tua libertà.</h3>
+          <p>Inizia il tuo percorso medico sicuro, indolore e senza chirurgia. Ti risponderemo con la massima discrezione.
+          </p>
+          <form id="hero-form-desktop" onsubmit="handleFormSubmit(event, 'hero-form-desktop')">
+            <div class="form-group">
+              <label for="hero-desktop-nome">Nome e Cognome (per la cartella clinica)</label>
+              <input type="text" id="hero-desktop-nome" name="nome" placeholder="Es. Laura Rossi" required />
+            </div>
+            <div class="form-group">
+              <label for="hero-desktop-email">Email riservata</label>
+              <input type="email" id="hero-desktop-email" name="email"
+                placeholder="Indirizzo email per comunicazioni private" required />
+            </div>
+            <div class="form-group">
+              <label for="hero-desktop-tel">Telefono (per la conferma discreta)</label>
+              <input type="tel" id="hero-desktop-tel" name="telefono" placeholder="Numero di telefono" />
+            </div>
+            <div class="form-group">
+              <label>Quando preferisce essere ricontattata?</label>
+              <div class="custom-select" data-name="orario_preferito">
+                <input type="hidden" name="orario_preferito" value="" />
+                <button type="button" class="custom-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                  <span class="custom-select__label">Scegli una fascia oraria</span>
+                  <svg class="custom-select__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="custom-select__dropdown" role="listbox">
+                  <li role="option" data-value="8:00-9:00">8:00 – 9:00</li>
+                  <li role="option" data-value="9:00-10:00">9:00 – 10:00</li>
+                  <li role="option" data-value="10:00-11:00">10:00 – 11:00</li>
+                  <li role="option" data-value="11:00-12:00">11:00 – 12:00</li>
+                  <li role="option" data-value="12:00-13:00">12:00 – 13:00</li>
+                  <li role="option" data-value="14:00-15:00">14:00 – 15:00</li>
+                  <li role="option" data-value="15:00-16:00">15:00 – 16:00</li>
+                  <li role="option" data-value="16:00-17:00">16:00 – 17:00</li>
+                  <li role="option" data-value="17:00-18:00">17:00 – 18:00</li>
+                  <li role="option" data-value="18:00-19:00">18:00 – 19:00</li>
+                  <li role="option" data-value="19:00-20:00">19:00 – 20:00</li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-privacy" style="display: flex; align-items: flex-start; gap: 8px;">
+              <input type="checkbox" id="hero-desktop-privacy" name="privacy" required style="margin-top: 4px;" />
+              <label for="hero-desktop-privacy" style="display: flex; align-items: flex-start; gap: 6px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  style="flex-shrink: 0; margin-top: 3px; color: var(--sage-dark);">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                Acconsento al trattamento dei dati personali (GDPR) per ricevere informazioni mediche riservate.
+              </label>
+            </div>
+            <button type="submit" class="btn-primary">PRENOTA IL TUO CONSULTO GRATUITO</button>
+          </form>
+          <div class="form-success" id="hero-form-desktopSuccess">
+            <h4>Richiesta ricevuta ✓</h4>
+            <p>Ti contatteremo entro 24 ore in modo completamente riservato.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -98,9 +162,27 @@
             <input type="tel" id="hero-tel" name="telefono" placeholder="Numero di telefono" />
           </div>
           <div class="form-group">
-            <label for="hero-messaggio">Come possiamo aiutarti? (facoltativo)</label>
-            <textarea id="hero-messaggio" name="messaggio"
-              placeholder="Breve descrizione del tuo disagio o domanda per lo specialista."></textarea>
+            <label>Quando preferisce essere ricontattata?</label>
+            <div class="custom-select" data-name="orario_preferito">
+              <input type="hidden" name="orario_preferito" value="" />
+              <button type="button" class="custom-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                <span class="custom-select__label">Scegli una fascia oraria</span>
+                <svg class="custom-select__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <ul class="custom-select__dropdown" role="listbox">
+                <li role="option" data-value="8:00-9:00">8:00 – 9:00</li>
+                <li role="option" data-value="9:00-10:00">9:00 – 10:00</li>
+                <li role="option" data-value="10:00-11:00">10:00 – 11:00</li>
+                <li role="option" data-value="11:00-12:00">11:00 – 12:00</li>
+                <li role="option" data-value="12:00-13:00">12:00 – 13:00</li>
+                <li role="option" data-value="14:00-15:00">14:00 – 15:00</li>
+                <li role="option" data-value="15:00-16:00">15:00 – 16:00</li>
+                <li role="option" data-value="16:00-17:00">16:00 – 17:00</li>
+                <li role="option" data-value="17:00-18:00">17:00 – 18:00</li>
+                <li role="option" data-value="18:00-19:00">18:00 – 19:00</li>
+                <li role="option" data-value="19:00-20:00">19:00 – 20:00</li>
+              </ul>
+            </div>
           </div>
           <div class="form-privacy" style="display: flex; align-items: flex-start; gap: 8px;">
             <input type="checkbox" id="hero-privacy" name="privacy" required style="margin-top: 4px;" />
@@ -183,9 +265,14 @@
        SECTION: BENEFITS (Cosa serve il trattamento)
   ============================================================ -->
   <section class="section-benefits">
-    <div class="container mobile-form-container">
+    <div class="container">
       <div class="benefits-inner reveal">
-        <h2 class="benefits-title">A cosa serve il trattamento laser <span>Fotona SMOOTH</span>:</h2>
+        <div class="benefits-left">
+          <h2 class="benefits-title">A cosa serve il trattamento laser <span>Fotona SMOOTH</span>:</h2>
+          <a href="#form-hero" class="btn-primary btn-pulse benefits-cta">
+            PRENOTA LA TUA VISITA GRATUITA
+          </a>
+        </div>
         <ul class="benefits-list">
           <li>Ferma l'incontinenza urinaria.</li>
           <li>Risolve la secchezza vaginale.</li>
@@ -194,13 +281,6 @@
           <li>Ripristina il tono dei tessuti dopo il parto o la menopausa.</li>
           <li>Rimpolpa e ringiovanisce i tessuti delle labbra vaginali.</li>
         </ul>
-        <div class="hero-cta-group reveal"
-          style="margin-top: 48px; max-width: 540px; margin-left: auto; margin-right: auto;">
-          <a href="#form-hero" class="btn-primary btn-pulse"
-            style="display:block; width:100%; text-align:center; padding:20px 48px; text-decoration:none;">
-            PRENOTA LA TUA VISITA GRATUITA
-          </a>
-        </div>
       </div>
     </div>
   </section>
@@ -485,20 +565,6 @@
   </div>
 
   <!-- ============================================================
-       STICKY CTA (Mobile)
-  ============================================================ -->
-  <div class="sticky-cta" id="stickyCta">
-    <a href="https://wa.me/390250043684" target="_blank"
-      style="background:#25D366; color:white; display:flex; align-items:center; justify-content:center; gap:8px;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-      </svg>
-      Prenota via WhatsApp
-    </a>
-  </div>
-
-  <!-- ============================================================
        JAVASCRIPT
   ============================================================ -->
   <script>
@@ -544,19 +610,125 @@
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // ============================================================
-    // STICKY CTA: hide when hero form is visible
+    // DESKTOP HERO: match form height to left content
     // ============================================================
-    const heroFormEl = document.getElementById('hero-form');
-    const stickyCta = document.getElementById('stickyCta');
-    const stickyObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          stickyCta.style.display = entry.isIntersecting ? 'none' : 'block';
+    function syncDesktopHeroCardHeight() {
+      const desktopMq = window.matchMedia('(min-width: 769px)');
+      const heroCopyMain = document.getElementById('heroCopyMain');
+      const heroDesktopCard = document.getElementById('heroDesktopCard');
+
+      if (!heroCopyMain || !heroDesktopCard) return;
+
+      if (!desktopMq.matches) {
+        heroCopyMain.style.height = '';
+        heroDesktopCard.style.height = '';
+        return;
+      }
+
+      heroCopyMain.style.height = '';
+      heroDesktopCard.style.height = '';
+
+      const copyHeight = Math.ceil(heroCopyMain.getBoundingClientRect().height);
+      const formHeight = Math.ceil(heroDesktopCard.scrollHeight);
+      const syncedHeight = Math.max(copyHeight, formHeight);
+
+      if (syncedHeight > 0) {
+        heroCopyMain.style.height = `${syncedHeight}px`;
+        heroDesktopCard.style.height = `${syncedHeight}px`;
+      }
+    }
+
+    const scheduleDesktopHeroSync = () => window.requestAnimationFrame(syncDesktopHeroCardHeight);
+
+    window.addEventListener('load', scheduleDesktopHeroSync);
+    window.addEventListener('resize', scheduleDesktopHeroSync);
+    scheduleDesktopHeroSync();
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(scheduleDesktopHeroSync);
+    }
+
+    if ('ResizeObserver' in window) {
+      const heroCopyMain = document.getElementById('heroCopyMain');
+      if (heroCopyMain) {
+        new ResizeObserver(scheduleDesktopHeroSync).observe(heroCopyMain);
+      }
+    }
+
+    // ============================================================
+    // CTA TARGET: su desktop punta alla hero (#hero), su mobile al form (#form-hero)
+    // ============================================================
+    function syncCtaTargets() {
+      const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+      const target = isDesktop ? '#hero' : '#form-hero';
+      document.querySelectorAll('a[href="#form-hero"], a[href="#hero"]').forEach(function(a) {
+        // non toccare la CTA mobile-only (su desktop è già nascosta, ma lasciamo coerente)
+        a.setAttribute('href', target);
+      });
+    }
+    syncCtaTargets();
+    window.addEventListener('resize', syncCtaTargets);
+
+    // ============================================================
+    // CUSTOM SELECT
+    // ============================================================
+    (function () {
+      function initCustomSelect(el) {
+        const trigger  = el.querySelector('.custom-select__trigger');
+        const dropdown = el.querySelector('.custom-select__dropdown');
+        const labelEl  = el.querySelector('.custom-select__label');
+        const hidden   = el.querySelector('input[type="hidden"]');
+        const items    = el.querySelectorAll('.custom-select__dropdown li');
+
+        labelEl.classList.add('placeholder');
+
+        function open() {
+          el.classList.add('custom-select--open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+        function close() {
+          el.classList.remove('custom-select--open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+        function toggle() {
+          el.classList.contains('custom-select--open') ? close() : open();
+        }
+
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          // close all other open dropdowns
+          document.querySelectorAll('.custom-select--open').forEach(function (other) {
+            if (other !== el) other.classList.remove('custom-select--open');
+          });
+          toggle();
         });
-      },
-      { threshold: 0.3 }
-    );
-    if (heroFormEl) stickyObserver.observe(heroFormEl);
+
+        items.forEach(function (item) {
+          item.addEventListener('click', function () {
+            items.forEach(function (i) { i.removeAttribute('aria-selected'); });
+            item.setAttribute('aria-selected', 'true');
+            labelEl.textContent = item.textContent;
+            labelEl.classList.remove('placeholder');
+            hidden.value = item.dataset.value;
+            close();
+          });
+        });
+
+        // close on outside click
+        document.addEventListener('click', function (e) {
+          if (!el.contains(e.target)) close();
+        });
+
+        // keyboard nav
+        trigger.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+          if (e.key === 'Escape') close();
+        });
+      }
+
+      document.querySelectorAll('.custom-select').forEach(initCustomSelect);
+    })();
+
   </script>
 
 </body>
