@@ -70,64 +70,115 @@
           </div>
         </div>
         <div class="hero-cta-group hero-cta-mobile-only">
-          <a href="#form-hero" class="btn-primary btn-pulse"
-            style="display:block; width:100%; text-align:center; padding:20px 48px; text-decoration:none; font-size:1.3rem;">
+          <a href="#form-hero" class="btn-primary btn-pulse">
             PRENOTA LA TUA VISITA GRATUITA
           </a>
         </div>
       </div>
 
-      <!-- Right (Desktop): Form -->
-      <div class="hero-form-desktop reveal" aria-hidden="true">
-        <div class="hero-form-card" id="heroDesktopCard">
-          <h3 style="text-transform: none; letter-spacing: -0.02em;">Riprendi in mano la tua libertà.</h3>
-          <p>Inizia il tuo percorso medico sicuro, indolore e senza chirurgia. Ti risponderemo con la massima discrezione.
-          </p>
-          <form id="hero-form-desktop" onsubmit="handleFormSubmit(event, 'hero-form-desktop')">
-            <div class="form-group">
-              <label for="hero-desktop-nome">Nome e Cognome (per la cartella clinica)</label>
-              <input type="text" id="hero-desktop-nome" name="nome" placeholder="Es. Laura Rossi" required />
-            </div>
-            <div class="form-group">
-              <label for="hero-desktop-email">Email riservata</label>
-              <input type="email" id="hero-desktop-email" name="email"
-                placeholder="Indirizzo email per comunicazioni private" required />
-            </div>
-            <div class="form-group">
-              <label for="hero-desktop-tel">Telefono (per la conferma discreta)</label>
-              <input type="tel" id="hero-desktop-tel" name="telefono" placeholder="Numero di telefono" />
-            </div>
-            <div class="form-group">
-              <label>Quando preferisce essere ricontattata?</label>
-              <div class="custom-select" data-name="orario_preferito">
-                <input type="hidden" name="orario_preferito" value="" />
-                <button type="button" class="custom-select__trigger" aria-haspopup="listbox" aria-expanded="false">
-                  <span class="custom-select__label">Scegli una fascia oraria</span>
-                  <svg class="custom-select__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <ul class="custom-select__dropdown" role="listbox">
-                  <li role="option" data-value="8:00-9:00">8:00 – 9:00</li>
-                  <li role="option" data-value="9:00-10:00">9:00 – 10:00</li>
-                  <li role="option" data-value="10:00-11:00">10:00 – 11:00</li>
-                  <li role="option" data-value="11:00-12:00">11:00 – 12:00</li>
-                  <li role="option" data-value="12:00-13:00">12:00 – 13:00</li>
-                  <li role="option" data-value="14:00-15:00">14:00 – 15:00</li>
-                  <li role="option" data-value="15:00-16:00">15:00 – 16:00</li>
-                  <li role="option" data-value="16:00-17:00">16:00 – 17:00</li>
-                  <li role="option" data-value="17:00-18:00">17:00 – 18:00</li>
-                  <li role="option" data-value="18:00-19:00">18:00 – 19:00</li>
-                  <li role="option" data-value="19:00-20:00">19:00 – 20:00</li>
-                </ul>
+      <!-- Right (Desktop): Video -->
+      <div class="hero-video-desktop">
+        <div class="hero-video-wrap" id="heroVideoWrap">
+          <video autoplay loop muted playsinline class="hero-video-desktop__video" id="heroDesktopVideo">
+            <source src="assets/videos/verticale.mp4" type="video/mp4">
+          </video>
+          <!-- Custom controls overlay -->
+          <div class="hv-controls" id="hvControls">
+            <!-- Progress bar -->
+            <div class="hv-progress-wrap">
+              <div class="hv-progress-bar" id="hvProgressBar">
+                <div class="hv-progress-fill" id="hvProgressFill"></div>
+                <div class="hv-progress-thumb" id="hvProgressThumb"></div>
               </div>
             </div>
-            <div class="form-privacy" style="display: flex; align-items: flex-start; gap: 8px;">
-              <input type="checkbox" id="hero-desktop-privacy" name="privacy" required style="margin-top: 4px;" />
-              <label for="hero-desktop-privacy" style="display: flex; align-items: flex-start; gap: 6px;">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  style="flex-shrink: 0; margin-top: 3px; color: var(--sage-dark);">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                </svg>
+            <!-- Bottom row: play + volume -->
+            <div class="hv-bottom">
+              <!-- Play / Pause -->
+              <button class="hv-btn" id="hvPlayBtn" aria-label="Play / Pausa">
+                <!-- Pause icon (default: video is playing) -->
+                <svg class="hv-icon hv-icon-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+                <!-- Play icon -->
+                <svg class="hv-icon hv-icon-play" viewBox="0 0 24 24" fill="currentColor" style="display:none"><polygon points="5,3 19,12 5,21"/></svg>
+              </button>
+              <!-- Volume -->
+              <div class="hv-volume-group">
+                <button class="hv-btn" id="hvMuteBtn" aria-label="Muto / Audio">
+                  <svg class="hv-icon hv-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+                  </svg>
+                  <svg class="hv-icon hv-icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+                    <polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                  </svg>
+                </button>
+                <div class="hv-vol-wrap">
+                  <div class="hv-vol-track" id="hvVolTrack">
+                    <div class="hv-vol-fill" id="hvVolFill" style="width:80%"></div>
+                    <div class="hv-vol-thumb" id="hvVolThumb" style="left:80%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DESKTOP FORM SECTION (hidden on mobile)
+  ============================================================ -->
+  <section class="section-desktop-form" id="desktop-form">
+    <div class="container">
+      <div class="desktop-form-inner">
+        <div class="desktop-form-copy reveal">
+          <h2>Richiedi un consulto<br>senza impegno.</h2>
+          <p>Ti ricontatteremo direttamente dal Centro Medico Ambrosiano con il numero:</p>
+          <a href="tel:+390250043684" class="form-copy-phone">+39 02 500 436 84</a><br>
+          <a href="tel:+390248197532" class="form-copy-phone">+39 02 481 975 32</a>
+          <p class="form-copy-hint">Salvali in rubrica così riconoscerai la nostra chiamata.</p>
+        </div>
+        <div class="desktop-form-card reveal">
+          <form id="hero-form-desktop" onsubmit="handleFormSubmit(event, 'hero-form-desktop')">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="dfd-nome">Nome e Cognome</label>
+                <input type="text" id="dfd-nome" name="nome" placeholder="Es. Laura Rossi" required />
+              </div>
+              <div class="form-group">
+                <label for="dfd-email">Email riservata</label>
+                <input type="email" id="dfd-email" name="email" placeholder="Indirizzo email" required />
+              </div>
+              <div class="form-group">
+                <label for="dfd-tel">Telefono</label>
+                <input type="tel" id="dfd-tel" name="telefono" placeholder="Numero di telefono" />
+              </div>
+              <div class="form-group">
+                <label>Orario preferito per essere ricontattata</label>
+                <div class="custom-select" data-name="orario_preferito">
+                  <input type="hidden" name="orario_preferito" value="" />
+                  <button type="button" class="custom-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="custom-select__label">Scegli una fascia oraria</span>
+                    <svg class="custom-select__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                  </button>
+                  <ul class="custom-select__dropdown" role="listbox">
+                    <li role="option" data-value="8:00-9:00">8:00 – 9:00</li>
+                    <li role="option" data-value="9:00-10:00">9:00 – 10:00</li>
+                    <li role="option" data-value="10:00-11:00">10:00 – 11:00</li>
+                    <li role="option" data-value="11:00-12:00">11:00 – 12:00</li>
+                    <li role="option" data-value="12:00-13:00">12:00 – 13:00</li>
+                    <li role="option" data-value="14:00-15:00">14:00 – 15:00</li>
+                    <li role="option" data-value="15:00-16:00">15:00 – 16:00</li>
+                    <li role="option" data-value="16:00-17:00">16:00 – 17:00</li>
+                    <li role="option" data-value="17:00-18:00">17:00 – 18:00</li>
+                    <li role="option" data-value="18:00-19:00">18:00 – 19:00</li>
+                    <li role="option" data-value="19:00-20:00">19:00 – 20:00</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="form-privacy" style="display:flex; align-items:flex-start; gap:8px; margin-bottom:20px;">
+              <input type="checkbox" id="dfd-privacy" name="privacy" required style="margin-top:4px;" />
+              <label for="dfd-privacy" style="font-size:0.78rem; color:var(--charcoal-soft); line-height:1.5;">
                 Acconsento al trattamento dei dati personali (GDPR) per ricevere informazioni mediche riservate.
               </label>
             </div>
@@ -141,24 +192,24 @@
       </div>
     </div>
   </section>
+
   <section class="section-hero-form" id="form-hero">
     <div class="container mobile-form-container">
       <div class="hero-form-card reveal">
-        <h3 style="text-transform: none; letter-spacing: -0.02em;">Riprendi in mano la tua libertà.</h3>
-        <p>Inizia il tuo percorso medico sicuro, indolore e senza chirurgia. Ti risponderemo con la massima discrezione.
-        </p>
+        <h3 style="text-transform: none; letter-spacing: -0.02em;">Richiedi un consulto gratuito.</h3>
+        <p>Ti ricontatteremo dal Centro Medico Ambrosiano con uno dei numeri <a href="tel:+390250043684" class="form-phone-inline"><br/>+39 02 500 436 84<br/></a> o <a href="tel:+390248197532" class="form-phone-inline"><br/>+39 02 481 975 32<br/></a>salvali in rubrica così riconoscerai la nostra chiamata.</p>
         <form id="hero-form" onsubmit="handleFormSubmit(event, 'hero-form')">
           <div class="form-group">
-            <label for="hero-nome">Nome e Cognome (per la cartella clinica)</label>
+            <label for="hero-nome">Nome e Cognome</label>
             <input type="text" id="hero-nome" name="nome" placeholder="Es. Laura Rossi" required />
           </div>
           <div class="form-group">
             <label for="hero-email">Email riservata</label>
-            <input type="email" id="hero-email" name="email" placeholder="Indirizzo email per comunicazioni private"
+            <input type="email" id="hero-email" name="email" placeholder="Indirizzo email"
               required />
           </div>
           <div class="form-group">
-            <label for="hero-tel">Telefono (per la conferma discreta)</label>
+            <label for="hero-tel">Telefono</label>
             <input type="tel" id="hero-tel" name="telefono" placeholder="Numero di telefono" />
           </div>
           <div class="form-group">
@@ -204,6 +255,29 @@
       </div>
     </div>
   </section>
+  <!-- ============================================================
+       SECTION: BENEFITS (Cosa serve il trattamento)
+  ============================================================ -->
+  <section class="section-benefits">
+    <div class="container">
+      <div class="benefits-inner reveal">
+        <div class="benefits-left">
+          <h2 class="benefits-title">A cosa serve il trattamento laser <span>Fotona SMOOTH</span>:</h2>
+          <a href="#form-hero" class="btn-primary btn-pulse benefits-cta">
+            PRENOTA LA TUA VISITA GRATUITA
+          </a>
+        </div>
+        <ul class="benefits-list">
+          <li>Ferma l'incontinenza urinaria.</li>
+          <li>Risolve la secchezza vaginale.</li>
+          <li>Interrompe i dolori durante i rapporti.</li>
+          <li>Migliora l'appagamento sessuale e l'intimità.</li>
+          <li>Ripristina il tono dei tessuti dopo il parto o la menopausa.</li>
+          <li>Rimpolpa e ringiovanisce i tessuti delle labbra vaginali.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
   <section class="section-quote">
     <div class="container">
       <div class="quote-content reveal">
@@ -215,7 +289,7 @@
   <section class="section-tranquillita">
     <div class="container">
       <div class="reveal" style="margin-bottom: 56px;">
-        <h2 class="section-title">La Garanzia Medica del <span>Centro Medico Ambrosiano</span></h2>
+        <h2 class="section-title">Perché affidarsi al <span>Centro Medico Ambrosiano</span></h2>
       </div>
       <div class="tranquillita-grid reveal">
         <div class="tranquillita-item">
@@ -261,38 +335,14 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       SECTION: BENEFITS (Cosa serve il trattamento)
-  ============================================================ -->
-  <section class="section-benefits">
-    <div class="container">
-      <div class="benefits-inner reveal">
-        <div class="benefits-left">
-          <h2 class="benefits-title">A cosa serve il trattamento laser <span>Fotona SMOOTH</span>:</h2>
-          <a href="#form-hero" class="btn-primary btn-pulse benefits-cta">
-            PRENOTA LA TUA VISITA GRATUITA
-          </a>
-        </div>
-        <ul class="benefits-list">
-          <li>Ferma l'incontinenza urinaria.</li>
-          <li>Risolve la secchezza vaginale.</li>
-          <li>Interrompe i dolori durante i rapporti.</li>
-          <li>Migliora l'appagamento sessuale e l'intimità.</li>
-          <li>Ripristina il tono dei tessuti dopo il parto o la menopausa.</li>
-          <li>Rimpolpa e ringiovanisce i tessuti delle labbra vaginali.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
   <section class="section-disagi">
     <div class="container">
       <div class="disagi-header reveal">
         <h2 class="section-title">Non sei <span>sola</span>.</h2>
       </div>
 
+      <!-- Desktop: mosaico originale -->
       <div class="disagi-unified-mosaic reveal">
-        <!-- Item 1: Main Lifestyle -->
         <div class="mosaic-unit main-unit">
           <div class="unit-image">
             <img src="assets/empathy-lifestyle-v2.png" alt="Serenità">
@@ -303,8 +353,6 @@
             <p>Migliaia di donne hanno già percorso questa strada con noi.</p>
           </div>
         </div>
-
-        <!-- Item 2: Smiling Relief -->
         <div class="mosaic-unit side-unit top-unit">
           <div class="unit-image">
             <img src="assets/empathy-smiling-v2.png" alt="Sollievo">
@@ -315,8 +363,6 @@
             <p>Un ambiente protetto per ogni tua esigenza.</p>
           </div>
         </div>
-
-        <!-- Item 3: Detail Empathy -->
         <div class="mosaic-unit side-unit bottom-unit">
           <div class="unit-image">
             <img src="assets/empathy-detail-v2.png" alt="Dettaglio">
@@ -328,11 +374,42 @@
           </div>
         </div>
       </div>
+
+      <!-- Mobile: carosello con snap scroll -->
+      <div class="disagi-stack reveal">
+        <div class="disagi-slide">
+          <figure class="disagi-slide__img">
+            <img src="assets/empathy-lifestyle-v2.png" alt="Serenità" loading="lazy">
+          </figure>
+          <div class="disagi-slide__caption">
+            <p>Spesso la parte più faticosa è solo quella di fissare un appuntamento. Capita di rimandare: lo sappiamo.</p>
+          </div>
+        </div>
+        <div class="disagi-slide">
+          <figure class="disagi-slide__img">
+            <img src="assets/empathy-smiling-v2.png" alt="Sollievo" loading="lazy">
+          </figure>
+          <div class="disagi-slide__caption">
+            <p>Il primo colloquio serve a capire con calma se questo trattamento ha senso per te, senza impegno.</p>
+          </div>
+        </div>
+        <div class="disagi-slide">
+          <figure class="disagi-slide__img">
+            <img src="assets/empathy-detail-v2.png" alt="Cura" loading="lazy">
+          </figure>
+          <div class="disagi-slide__caption">
+            <p>Da noi lavorano ginecologhe del Centro Medico Ambrosiano. In studio si ragiona sul tuo caso.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dots carosello (solo mobile) -->
+      <div class="disagi-dots" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+
       <div class="hero-cta-group reveal" style="margin-top: 88px;">
-        <a href="#form-hero" class="btn-primary btn-pulse"
-          style="display:block; width:100%; text-align:center; padding:20px 48px; text-decoration:none;">
-          PRENOTA LA TUA VISITA GRATUITA
-        </a>
+        <a href="#form-hero" class="btn-primary btn-pulse benefits-cta">PRENOTA LA TUA VISITA GRATUITA</a>
       </div>
     </div>
   </section>
@@ -376,22 +453,6 @@
                     una sensazione di calore delicato. La sonda utilizzata è appositamente progettata per il comfort
                     ginecologico e la tecnologia non ablativa non causa lesioni alla mucosa. Non è necessaria alcuna
                     anestesia.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-              <h4>Posso avere rapporti sessuali dopo il trattamento?</h4>
-              <div class="faq-toggle"></div>
-            </div>
-            <div class="faq-answer-wrapper">
-              <div class="faq-answer">
-                <div class="faq-answer-content">
-                  <p>Si consiglia di attendere 3–5 giorni dopo ogni seduta prima di riprendere i rapporti sessuali, per
-                    permettere ai tessuti di beneficiare appieno della stimolazione del collagene. Non ci sono altre
-                    restrizioni particolari nella vita quotidiana.</p>
                 </div>
               </div>
             </div>
@@ -451,43 +512,28 @@
 
           <div class="faq-item">
             <div class="faq-question" onclick="toggleFaq(this)">
-              <h4>Ci sono controindicazioni?</h4>
+              <h4>Come capite se il trattamento è adatto al mio caso?</h4>
               <div class="faq-toggle"></div>
             </div>
             <div class="faq-answer-wrapper">
               <div class="faq-answer">
                 <div class="faq-answer-content">
-                  <p>Come per qualsiasi trattamento medico, esistono alcune controindicazioni che la specialista
-                    valuterà
-                    durante il colloquio conoscitivo. In generale, il trattamento non è indicato in caso di infezioni
-                    attive, gravidanza o alcune condizioni specifiche. La visita preliminare serve proprio a garantire
-                    che
-                    il trattamento sia sicuro e adatto alla tua situazione.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-              <h4>Come viene garantita la mia privacy?</h4>
-              <div class="faq-toggle"></div>
-            </div>
-            <div class="faq-answer-wrapper">
-              <div class="faq-answer">
-                <div class="faq-answer-content">
-                  <p>La riservatezza è un valore fondamentale della nostra clinica. Tutti i dati personali e clinici
-                    sono
-                    trattati in conformità al GDPR e al segreto professionale medico. La prenotazione può avvenire
-                    telefonicamente o tramite modulo online sicuro. Nessuna informazione viene condivisa con terzi senza
-                    il
-                    tuo esplicito consenso.</p>
+                  <p>Per noi la sicurezza nasce dall’ascolto. Il primo passo è un colloquio conoscitivo con la
+                    ginecologa: si ricostruisce la tua storia, si chiariscono obiettivi e aspettative e si valuta
+                    insieme se questo protocollo è la scelta più sensata per te. È un momento sereno e senza impegno:
+                    quando il percorso è indicato, si procede con la massima cura; quando servono altre soluzioni, te
+                    lo spieghiamo con chiarezza. È il modo in cui lavoriamo ogni giorno — responsabilità e
+                    personalizzazione, prima di ogni seduta.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
+      </div>
+
+      <div class="faq-cta reveal text-center">
+        <a href="#form-hero" class="btn-primary btn-pulse benefits-cta">PRENOTA LA TUA VISITA GRATUITA</a>
       </div>
     </div>
   </section>
@@ -610,64 +656,157 @@
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // ============================================================
-    // DESKTOP HERO: match form height to left content
+    // DESKTOP HERO: allinea video a hero-copy-main (titolo ↔ ultimo bullet)
     // ============================================================
-    function syncDesktopHeroCardHeight() {
-      const desktopMq = window.matchMedia('(min-width: 769px)');
-      const heroCopyMain = document.getElementById('heroCopyMain');
-      const heroDesktopCard = document.getElementById('heroDesktopCard');
+    function syncHeroVideo() {
+      const mq = window.matchMedia('(min-width: 769px)');
+      const copyMain = document.getElementById('heroCopyMain');
+      const video    = document.querySelector('.hero-video-desktop__video');
+      const videoWrap = document.querySelector('.hero-video-wrap') || document.querySelector('.hero-video-desktop');
 
-      if (!heroCopyMain || !heroDesktopCard) return;
+      if (!copyMain || !video || !videoWrap) return;
 
-      if (!desktopMq.matches) {
-        heroCopyMain.style.height = '';
-        heroDesktopCard.style.height = '';
+      if (!mq.matches) {
+        video.style.height  = '';
+        video.style.marginTop = '';
         return;
       }
 
-      heroCopyMain.style.height = '';
-      heroDesktopCard.style.height = '';
+      // Misura la posizione di hero-copy-main relativa al suo contenitore grid
+      const copyRect  = copyMain.getBoundingClientRect();
+      const wrapRect  = videoWrap.getBoundingClientRect();
 
-      const copyHeight = Math.ceil(heroCopyMain.getBoundingClientRect().height);
-      const formHeight = Math.ceil(heroDesktopCard.scrollHeight);
-      const syncedHeight = Math.max(copyHeight, formHeight);
+      const height    = Math.round(copyRect.height);
+      const offsetTop = Math.round(copyRect.top - wrapRect.top);
 
-      if (syncedHeight > 0) {
-        heroCopyMain.style.height = `${syncedHeight}px`;
-        heroDesktopCard.style.height = `${syncedHeight}px`;
-      }
+      video.style.height    = height + 'px';
+      video.style.marginTop = offsetTop + 'px';
     }
 
-    const scheduleDesktopHeroSync = () => window.requestAnimationFrame(syncDesktopHeroCardHeight);
-
-    window.addEventListener('load', scheduleDesktopHeroSync);
-    window.addEventListener('resize', scheduleDesktopHeroSync);
-    scheduleDesktopHeroSync();
-
+    const scheduleVideoSync = () => window.requestAnimationFrame(syncHeroVideo);
+    window.addEventListener('load',   scheduleVideoSync);
+    window.addEventListener('resize', scheduleVideoSync);
+    scheduleVideoSync();
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(scheduleDesktopHeroSync);
+      document.fonts.ready.then(scheduleVideoSync);
     }
-
     if ('ResizeObserver' in window) {
-      const heroCopyMain = document.getElementById('heroCopyMain');
-      if (heroCopyMain) {
-        new ResizeObserver(scheduleDesktopHeroSync).observe(heroCopyMain);
-      }
+      const copyMain = document.getElementById('heroCopyMain');
+      if (copyMain) new ResizeObserver(scheduleVideoSync).observe(copyMain);
     }
 
     // ============================================================
-    // CTA TARGET: su desktop punta alla hero (#hero), su mobile al form (#form-hero)
+    // CTA TARGET: su desktop → #desktop-form, su mobile → #form-hero
     // ============================================================
     function syncCtaTargets() {
       const isDesktop = window.matchMedia('(min-width: 769px)').matches;
-      const target = isDesktop ? '#hero' : '#form-hero';
-      document.querySelectorAll('a[href="#form-hero"], a[href="#hero"]').forEach(function(a) {
-        // non toccare la CTA mobile-only (su desktop è già nascosta, ma lasciamo coerente)
+      const target = isDesktop ? '#desktop-form' : '#form-hero';
+      document.querySelectorAll('a[href="#form-hero"], a[href="#desktop-form"], a[href="#hero"]').forEach(function(a) {
         a.setAttribute('href', target);
       });
     }
     syncCtaTargets();
     window.addEventListener('resize', syncCtaTargets);
+
+    // ============================================================
+    // DISAGI CAROUSEL DOTS
+    // ============================================================
+    (function () {
+      const track = document.querySelector('.disagi-stack');
+      const dots  = document.querySelectorAll('.disagi-dots span');
+      if (!track || !dots.length) return;
+      track.addEventListener('scroll', function () {
+        const slideW = track.querySelector('.disagi-slide').offsetWidth + 12;
+        const idx    = Math.round(track.scrollLeft / slideW);
+        dots.forEach(function (d, i) {
+          d.style.opacity = i === idx ? '1' : '0.4';
+          d.style.width   = i === idx ? '18px' : '6px';
+          d.style.borderRadius = i === idx ? '3px' : '50%';
+        });
+      }, { passive: true });
+    })();
+
+    // ============================================================
+    // CUSTOM VIDEO CONTROLS (desktop hero)
+    // ============================================================
+    (function () {
+      const video     = document.getElementById('heroDesktopVideo');
+      const playBtn   = document.getElementById('hvPlayBtn');
+      const muteBtn   = document.getElementById('hvMuteBtn');
+      const progFill  = document.getElementById('hvProgressFill');
+      const progThumb = document.getElementById('hvProgressThumb');
+      const progWrap  = document.querySelector('.hv-progress-wrap');
+      const volTrack  = document.getElementById('hvVolTrack');
+      const volFill   = document.getElementById('hvVolFill');
+      const volThumb  = document.getElementById('hvVolThumb');
+
+      if (!video) return;
+
+      /* ---- helpers ---- */
+      function setPlayIcon(paused) {
+        playBtn.querySelector('.hv-icon-pause').style.display = paused ? 'none'  : '';
+        playBtn.querySelector('.hv-icon-play').style.display  = paused ? ''      : 'none';
+      }
+      function setMuteIcon(muted) {
+        muteBtn.querySelector('.hv-icon-muted').style.display = muted ? ''     : 'none';
+        muteBtn.querySelector('.hv-icon-sound').style.display = muted ? 'none' : '';
+      }
+      function setVolUI(vol) {
+        const pct = (vol * 100).toFixed(1) + '%';
+        volFill.style.width  = pct;
+        volThumb.style.left  = pct;
+      }
+
+      /* ---- init ---- */
+      setMuteIcon(video.muted);
+      setVolUI(video.volume || 0.8);
+
+      /* ---- play / pause ---- */
+      playBtn.addEventListener('click', function () {
+        video.paused ? video.play() : video.pause();
+      });
+      video.addEventListener('play',  function () { setPlayIcon(false); });
+      video.addEventListener('pause', function () { setPlayIcon(true);  });
+
+      /* ---- mute / unmute ---- */
+      muteBtn.addEventListener('click', function () {
+        video.muted = !video.muted;
+        setMuteIcon(video.muted);
+        if (!video.muted && video.volume === 0) { video.volume = 0.8; setVolUI(0.8); }
+      });
+
+      /* ---- progress bar ---- */
+      video.addEventListener('timeupdate', function () {
+        if (!video.duration) return;
+        const pct = (video.currentTime / video.duration * 100).toFixed(2) + '%';
+        progFill.style.width = pct;
+        progThumb.style.left = pct;
+      });
+
+      function seekFromEvent(e) {
+        const rect = progWrap.querySelector('.hv-progress-bar').getBoundingClientRect();
+        const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        video.currentTime = ratio * video.duration;
+      }
+      let seekDragging = false;
+      progWrap.addEventListener('mousedown', function (e) { seekDragging = true; seekFromEvent(e); });
+      document.addEventListener('mousemove', function (e) { if (seekDragging) seekFromEvent(e); });
+      document.addEventListener('mouseup',   function ()  { seekDragging = false; });
+
+      /* ---- volume slider ---- */
+      function volFromEvent(e) {
+        const rect = volTrack.getBoundingClientRect();
+        const vol  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        video.volume = vol;
+        video.muted  = vol === 0;
+        setMuteIcon(video.muted);
+        setVolUI(vol);
+      }
+      let volDragging = false;
+      volTrack.addEventListener('mousedown', function (e) { volDragging = true; volFromEvent(e); });
+      document.addEventListener('mousemove', function (e) { if (volDragging) volFromEvent(e); });
+      document.addEventListener('mouseup',   function ()  { volDragging = false; });
+    })();
 
     // ============================================================
     // CUSTOM SELECT
